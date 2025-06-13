@@ -5,29 +5,543 @@
  }
 
  /* reset */
- 
+   body, p, ul, li, a{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+   }
+   li{
+    list-style: none;
+   }
 
  /* base styles */
+ body{
+  background: var(--secondary);
+  overflow-x: hidden;
+  /* this is added because when we add the banner image at the right we dont want a scroll bar */
+  font-family: Rubik Regular;
+ }
+ .button{
+  background: none;
+  border: 2px solid var(--primary); 
+  color: var(--primary);
+  text-transform: uppercase;
+  border-radius: 20px;
+  padding: 6px 12px;
+
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0,6);
+  display: inline-block;
+
+ }
+
+ .button:hover{
+  background: var(--primary);
+  color: #222;
+ } 
+
+
+ input, textarea{
+  background: rgba(255, 255, 255, 0.05);
+  color: #f2f2f2;
+  border-radius: 20px;
+  padding: 10px 12px;
+  border: 2px solid #9893d8;
+ }  
+    
 
  /* fonts */
+ /* go to google fonts then select the necessary font files with tiff extension
+ then paste it in the font folder in the project working directory
+ */
+ @font-face {
+  font-family: 'Rubik Regular';
+  src: url(assets/fonts/Rubik-Regular.ttf);
+ }
+ h1,h2,h3,h4{
+  color: #dddbff;
+  font-weight: normal;
+  line-height: 1.4em;
+ }
+
+ p,a,li{
+  color: #9893d8;
+  line-height: 1.4em;
+  font-size: 1em;
+
+
+ }
+
+ h1,h3{
+    font-size: 1.2em;
+    /* okay, here the em means its relative to the body font size
+    that means that normally the browser color type will be 16px
+    and when we use 1.2 em, then the 16 gets multiplied with the 1.2
+
+    so its easy while making the site responsive
+    we just have to update the media query with the body font size
+    */
+ }
+ h2{
+  font-size: 1.6em;
+ }
+
+ h4{
+  font-size: 1.1em;
+ }
+
+ .leading{
+  font-size: 1.1em; 
+ }
+
 
  /* mobile styles */
+ .grid{
+  display: grid;
+  grid-template-columns: repeat(8,1fr);
+  gap: 10px;
+  box-sizing: border-box;
+ }
+
+ .site-nav{
+  margin: 0 20px;
+ }
+
+ .site-nav ul{
+  display: none;  
+ }
+
+ .site-nav h1{
+  grid-column: 1/4;
+  grid-row: 1;
+  padding-bottom: 10px;
+  border-bottom: 3px solid var(--primary);
+  display: inline-block;
+ }
+
+ #welcome{
+  padding: 0 20px 20px 20px ;
+ }
+
+ .welcome-text{
+  grid-column: 1/6;
+
+ }
+ .welcome-text a{
+  margin: 20px 0;
+}
+
+ .welcome-img{
+  grid-column: 6/9;
+ }
+.welcome-img img{
+  width: 200%;
+  /* not 200 percent of the original image size
+  but 200% of the width of the container containing it
+
+  */
+
+ }
+
+ #portfolio{
+  background: url(assets/square_bg.png);
+  background-size: cover;
+  /* important to add this cover */
+  background-repeat: no-repeat;
+  background-position: bottom;
+  padding: 30px 20px;
+ }
+
+ #portfolio h3{
+  text-align: center;
+  margin-bottom: 0;
+ }
+
+   
+ .project a{
+  grid-column: 1/9;
+  margin: 20px 0;
+  display: flex;
+ }
+ 
+ .project a *{
+  margin: 0 20px;
+  max-width: 40%;
+  align-self: center;
+  justify-self: center;
+ }
+
+ .project h4{
+  color: #999474;
+ }
+
+ #skills{
+  padding: 30px 20px;
+  background: #07083e;
+ }
+
+#skills h3{
+  text-align: center;
+
+}
+
+#skills ul{
+  margin: 40px 0;
+}
+
+#skills li{
+  padding: 10px;
+  background: rgba(0, 0, 0, 0,2);
+  grid-column: span 4;
+  text-align: center;
+}
+
+#skills img{
+  height: 80px;
+  margin: 10px auto;
+}
+
+
+
+#contact{
+  padding: 30px 20px;
+  background: #080936;
+}
+
+#contact h3,#contact p{
+  text-align: center;
+  margin-bottom: 0;
+}
+
+#contact form{
+  width: 80%;
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: center;
+}
+#contact input, #contact textarea{
+  width: 100%;
+  margin: 10px 0;
+}
+
+#contact .button{
+  margin-top: 10px;
+}
+
+
+
+footer{
+  padding: 30px 20px;
+  background-color: #14153d;
+  background-image: url(assets/footer_image.png);
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: top  center;
+
+}
+
+footer .copyright{
+  grid-column: 1/3;
+  font-size: 0.8em;
+}
+
+footer .social{
+  grid-column: 7/9;
+  display: flex;
+  justify-content: flex-end;
+}
+
+footer li{
+  margin: 0 6px;
+}
+
+footer img{
+  width: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* grid
+  we can assign the number of grids the element want
+  grid lines are the lines in the grid
+  there number will be 1 more than the no of rows and columns
+
+  how to do that
+  1   create a grid container
+    <div>
+      <a href="">one</a>
+      <a href="">two</a>
+      <a href="">three</a>
+    </div>
+
+    <style>
+      div{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    </style>
+  <!-- 2    find the number of columns and row each of the elements want 
+  mention that using the grid-template-columns;
+  -->
+        
+ */
 
  /* small tablet styles */
-@media screen and (min-width:620px) {
-  
+@media screen and (min-width: 620px){
+
+  .welcome-text{
+    grid-column: 1/5;
+  }
+  .welcome-img{
+    grid-column: 5/9;
+  }
+  .welcome-img img{
+    width: 100%;
+  }
+  .project{
+    margin-top: 40px;
+  }
+  .project a{
+    grid-column: span 4;
+    display: block;
+    margin: 20px 0;
+  }
+  .project a:last-child{
+    grid-column: 3/7;
+  }
+  .project a *{
+    margin: 10px;
+    max-width: 60%;
+    margin: 10px 20%;
+  }
+  .project h4{
+    text-align: center;
+  }
+  #skills{
+    padding: 30px 100px;
+  }
+  footer{
+    background-size: 20%;
+  }
+
 }
- /* large tablets and laptop styles*/
-@media screen  and (min-width:960px) {
-  
+
+/* large tablet & laptop styles */
+@media screen and (min-width: 960px){
+
+  body{
+    font-size: 18px;
+  }
+  .grid{
+    max-width: 1060px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .leading{
+    margin: 20px 0;
+  }
+  .site-nav{
+    padding: 0 20px;
+  }
+  .site-nav h1{
+    grid-column: 1/3;
+  }
+  .site-nav ul{
+    display: flex;
+    grid-column: 6/9;
+    justify-content: flex-end;
+    align-self: center;
+  }
+  .site-nav li{
+    margin-left: 20px;
+  }
+  .welcome-text{
+    grid-column: 1/5;
+    align-self: center;
+  }
+  #welcome{
+    padding-bottom: 40px;
+  }
+  .project a:nth-child(1){
+    grid-column: 2/4;
+  }
+  .project a:nth-child(2){
+    grid-column: 4/6;
+    padding-top: 140px;
+  }
+  .project a:nth-child(3){
+    grid-column: 6/8;
+  }
+  .project a *{
+    max-width: 80%;
+    margin: 30px 10%;
+  }
+  #skills{
+    padding: 30px 20px;
+  }
+  #skills ul{
+    margin: 40px auto;
+  }
+  #skills li{
+    grid-column: span 2;
+  }
+  #skills p{
+    max-width: 600px;
+    margin: 40px auto;
+  }
+  footer{
+    background-size: 20%;
+    padding: 40px 20px;
+  }
 }
 
  /* larger desktop screen */
 @media screen  and (min-width:1200px) {
   
+  body{
+    font-size: 20px;
+  }
+  .site-nav{
+    padding: 0;
+  }
+  #welcome, #portfolio, #skills, #contact{
+    padding: 90px 0;
+  }
+  .leading{
+    margin: 20px 0;
+  }
+  .project a:nth-child(1){
+    grid-column: 1/3;
+  }
+  .project a:nth-child(2){
+    grid-column: 4/6;
+    padding-top: 140px;
+  }
+  .project a:nth-child(3){
+    grid-column: 7/9;
+  }
+  .project a *{
+    max-width: 100%;
+    margin: 30px 0%;
+  }
+  footer{
+    padding: 80px 0;
+    background-size: 30%;
+  }
+  footer .copyright{
+    grid-column: 1/4;
+  }
+  footer .social{
+    grid-column: 6/9;
+  }
+  footer img{
+    width: 30px;
+  }
 }
+
+/* grid testing */
  
+/* .project{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
 
+    
+}
+.project a{
+  background: gray;
+  text-align: center;
+  padding: 20px;
+}  */
 
+/* <!-- 
+  to create a 12 column grid
+  we have 12 lines
 
+  -->
+  <style>
+    .selector{
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+    }
 
+    .one{
+      grid-column: 1/5;
+      /* means first row
+      and takes the column 1-4 */
+    /* }
+    .two{
+      grid-column: 6/9;
+      /* there will be a gap of 1 column at the centre
+      then the next 3 columns to .two 
+    }
+    .three{
+      grid-column: 10/12;
+      grid-row: 2; 
+    }
+  </style>
+
+  <!-- if we have 4 elements and 12 columns each will get a 3 column width
+ 
+  we can override this
+  by giving the values for each element directly
+
+  
+  
+  this is the first thing to check when you learn grids
+  --> */
+  
+  /*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  */
+
+/* 
+ .project{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 10px;
+ }
+
+ .project img{
+  max-width: 100px;
+ }
+
+ .project a{
+  background: gray;
+  text-align: center;
+  padding: 20px;
+}
+
+.project a:nth-child(1){
+  grid-column: 2/6;
+  grid-row: 1;
+}
+
+.project a:nth-child(2){
+  grid-column: 8/12;
+  grid-row: 1;
+}
+
+.project a:nth-child(3){
+  grid-column: 5/9;
+  grid-row: 2;
+}  */
+
+   
+      
